@@ -2,7 +2,7 @@
 
 # MiniFAT
 
-A FAT-inspired virtual file system implemented from scratch in Python
+A FAT-inspired virtual file system implemented from scratch in Python.
 Simulates a real disk using a binary image and exposes a full interactive shell.
 
 <br/>
