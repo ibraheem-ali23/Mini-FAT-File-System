@@ -134,17 +134,6 @@ To scale the disk, increase `CLUSTER_COUNT` and extend `FAT_END_CLUSTER` so the 
 
 ---
 
-## Roadmap
-
-- [ ] Multi-level path resolution (`cd a/b/c`)
-- [ ] Recursive directory removal
-- [ ] File timestamps (created / modified)
-- [ ] `df` — disk usage statistics
-- [ ] Host OS file import / export
-- [ ] `fsck` — disk integrity checker
-
----
-
 ## License
 
 [MIT](LICENSE)
