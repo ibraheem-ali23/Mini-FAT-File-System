@@ -25,7 +25,7 @@ MiniFAT is a userspace implementation of a FAT-style file system. It stores ever
 ## Quick Start
 
 ```bash
-git clone https://github.com/your-username/minifat.git
+git clone https://github.com/your-username/Mini-Fat-File-System.git
 cd minifat
 python main.py
 ```
