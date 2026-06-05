@@ -1,7 +1,6 @@
 import struct
 from fs_constants import FsConstants
 
-
 class FatTableManager:
 
     def __init__(self, virtual_disk):
@@ -13,6 +12,21 @@ class FatTableManager:
         # Reserved clusters (superblock + FAT itself + root)
         self.reserved_clusters = set(range(0, FsConstants.FAT_END_CLUSTER + 1))
         self.reserved_clusters.add(FsConstants.ROOT_DIR_FIRST_CLUSTER)
+
+    def GetFatEntry(self, index):
+        return self.fat[index]
+
+    def SetFatEntry(self, index, value):
+        self.fat[index] = value
+
+    def ReadAllFat(self):
+        return self.fat.copy()
+
+    def WriteAllFat(self, entries):
+        if len(entries) != FsConstants.CLUSTER_COUNT:
+            raise ValueError("Invalid FAT array size")
+        self.fat = entries.copy()
+        self.FlushFatToDisk()
 
     # -------------------------------------------------
     # LOAD / SAVE FAT

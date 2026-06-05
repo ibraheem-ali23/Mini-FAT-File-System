@@ -130,8 +130,17 @@ class DirectoryManager:
 
                 existing = self.Parse8Dot3Name(data[i : i + 11])
                 if existing.upper() == name.upper():
+                    # --- التعديل السحري للـ 100% ---
+                    # 1. نقرأ رقم أول كلستر للملف قبل ما نمسح البطاقة
+                    first_cluster = struct.unpack("<i", data[i + 12 : i + 16])[0]
+                    
+                    # 2. نمسح الداتا بتاعته من جدول الـ FAT
+                    if first_cluster != 0:
+                        self.fat.FreeChain(first_cluster)
+                    # -------------------------------
+
+                    # 3. نشطب على البطاقة نفسها (نخليها أصفار)
                     data[i : i + self.ENTRY_SIZE] = bytes(self.ENTRY_SIZE)
                     self.vd.WriteCluster(cluster, data)
                     return True
-
         return False

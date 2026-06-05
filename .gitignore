@@ -1,0 +1,25 @@
+# --- System Settings ---
+# Virtual disk (large binary file, do not track)
+minifat.bin
+
+# Shell script (as requested)
+shell.py
+
+# --- Cache and Temp Files ---
+# Python temporary files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Development Environment ---
+# VS Code personal settings
+.vscode/
+
+# --- Other System Files ---
+# Log files
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db

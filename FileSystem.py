@@ -11,6 +11,27 @@ class FileSystem:
         self.fat = fat_table
         self.dir = dir_manager
 
+    # ---------------- System Formatting ---------------- #
+
+    def format_system(self):
+       
+        empty_cluster = bytes(FsConstants.CLUSTER_SIZE)
+        
+        self.disk.WriteCluster(FsConstants.SUPERBLOCK_CLUSTER, empty_cluster)
+    
+        self.fat.fat = [0] * FsConstants.CLUSTER_COUNT
+        
+        self.fat.fat[FsConstants.ROOT_DIR_FIRST_CLUSTER] = -1
+        # -------------------------------------------------------
+        
+    
+        self.fat.FlushFatToDisk()
+        
+        
+        self.disk.WriteCluster(FsConstants.ROOT_DIR_FIRST_CLUSTER, empty_cluster)
+        
+        print("System Formatted Successfully!")
+
     # ---------------- File Operations ---------------- #
 
     def create_file(self, parent_cluster: int, file_name: str):
